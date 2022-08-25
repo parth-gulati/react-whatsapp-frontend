@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { ThemeProvider, Container } from "react-bootstrap";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  //Navigate,
+} from "react-router-dom";
+import Login from "./auth/pages/Login";
+import Register from "./auth/pages/Register";
+import Header from "./common/Header";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider
+      breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+      minBreakpoint="xxs"
+    >
+      <Router>
+        <Header />
+        <Container fluid className="App">
+          <Routes>
+            <Route path="*" element={<h1>Dashboard</h1>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Container>
+      </Router>
+    </ThemeProvider>
   );
 }
 
