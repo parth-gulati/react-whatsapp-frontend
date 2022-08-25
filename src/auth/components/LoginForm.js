@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 const LoginForm = ({ email, setEmail, password, setPassword }) => {
   return (
     <Form className>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Email address</Form.Label>
         <Form.Control
           value={email}

@@ -1,4 +1,4 @@
-const BREAKPOINTS = {
+const breakpoints = {
   xs: `0`,
   sm: `576px`,
   md: `768px`,
@@ -7,4 +7,4 @@ const BREAKPOINTS = {
   xxl: `1400px`,
 };
 
-export default BREAKPOINTS;
+export default breakpoints;

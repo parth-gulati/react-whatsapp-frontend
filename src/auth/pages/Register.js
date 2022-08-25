@@ -1,42 +1,28 @@
-import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import styled from "styled-components";
 import RegisterForm from "../components/RegisterForm";
-import BREAKPOINTS from "../../common/extras/breakpoints";
+import breakpoints from "../../common/extras/breakpoints";
 
 const Register = () => {
-  const breakpoints = useBootstrapBreakpoints();
-  console.log(breakpoints);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const handleSubmission = (values) => {
+    console.log(values);
+  };
 
   return (
-    <StyledContainer BREAKPOINTS={BREAKPOINTS}>
+    <StyledContainer breakpoints={breakpoints}>
       <h1 className="display-1 text-center pt-3">Register</h1>
       <Container className="ml-auto text-dark p-5">
-        <RegisterForm
-          name={name}
-          setName={setName}
-          password={password}
-          setPassword={setPassword}
-          email={email}
-          password={password}
-          setPassword={setPassword}
-          setEmail={setEmail}
-        />
+        <RegisterForm handleSubmission={handleSubmission} />
       </Container>
     </StyledContainer>
   );
 };
 
 const StyledContainer = styled(Container)`
-  width: 50%;
+  width: 40%;
 
-  @media (max-width: ${(props) => props.BREAKPOINTS.md}) {
-    width: 80%;
+  @media (max-width: ${(props) => props.breakpoints.md}) {
+    width: 100%;
   }
 `;
 

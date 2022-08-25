@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
-import BREAKPOINTS from "../../common/extras/breakpoints";
+import breakpoints from "../../common/extras/breakpoints";
 
 const Login = () => {
-  const breakpoints = useBootstrapBreakpoints();
-  console.log(breakpoints);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <StyledContainer BREAKPOINTS={BREAKPOINTS}>
+    <StyledContainer breakpoints={breakpoints}>
       <h1 className="display-1 text-center pt-3">Login</h1>
       <Container className="ml-auto text-dark p-5">
         <LoginForm
@@ -27,9 +24,12 @@ const Login = () => {
 };
 
 const StyledContainer = styled(Container)`
-  width: 50%;
+  width: 60%;
 
-  @media (max-width: ${(props) => props.BREAKPOINTS.md}) {
+  ${(props) => {
+    console.log(props);
+  }}
+  @media (max-width: ${(props) => props.breakpoints.lg}) {
     width: 80%;
   }
 `;
