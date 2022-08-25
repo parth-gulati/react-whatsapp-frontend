@@ -1,23 +1,18 @@
-import { useState } from "react";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import breakpoints from "../../common/extras/breakpoints";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const handleSubmission = (values) => {
+    console.log(values);
+  };
 
   return (
     <StyledContainer breakpoints={breakpoints}>
       <h1 className="display-1 text-center pt-3">Login</h1>
       <Container className="ml-auto text-dark p-5">
-        <LoginForm
-          email={email}
-          password={password}
-          setPassword={setPassword}
-          setEmail={setEmail}
-        />
+        <LoginForm handleSubmission={handleSubmission} />
       </Container>
     </StyledContainer>
   );
