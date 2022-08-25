@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
-import Header from "./common/Header";
+import Header from "./common/components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./suits/pages/Dashboard";
 
