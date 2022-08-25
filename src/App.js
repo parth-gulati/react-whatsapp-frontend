@@ -10,6 +10,7 @@ import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
 import Header from "./common/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Dashboard from "./suits/pages/Dashboard";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Header />
         <Container fluid className="App">
           <Routes>
-            <Route path="*" element={<h1>Dashboard</h1>} />
+            <Route path="*" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
