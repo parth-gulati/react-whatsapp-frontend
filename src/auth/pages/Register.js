@@ -21,7 +21,10 @@ const Register = () => {
 const StyledContainer = styled(Container)`
   width: 40%;
 
-  @media (max-width: ${(props) => props.breakpoints.md}) {
+  @media (max-width: ${(props) => props.breakpoints.lg}) {
+    width: 80%;
+  }
+  @media (max-width: ${(props) => props.breakpoints.sm}) {
     width: 100%;
   }
 `;

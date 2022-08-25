@@ -19,13 +19,14 @@ const Login = () => {
 };
 
 const StyledContainer = styled(Container)`
-  width: 60%;
+  width: 40%;
 
-  ${(props) => {
-    console.log(props);
-  }}
   @media (max-width: ${(props) => props.breakpoints.lg}) {
     width: 80%;
+  }
+
+  @media (max-width: ${(props) => props.breakpoints.sm}) {
+    width: 100%;
   }
 `;
 
