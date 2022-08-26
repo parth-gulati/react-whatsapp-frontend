@@ -1,9 +1,25 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { auth } = useSelector((state) => ({ ...state }));
+  console.log(auth);
+  console.log(auth === null);
+
+  const handleLogout = () => {
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logged out successfully");
+    navigate("/login");
+  };
 
   const customNavigate = (e, path) => {
     e.preventDefault();
@@ -34,22 +50,37 @@ const Header = () => {
             </StyledLink>
           </Nav>
           <Nav className="ms-auto">
-            <StyledLink
-              href="/login"
-              onClick={(e) => {
-                customNavigate(e, "/login");
-              }}
-            >
-              Login
-            </StyledLink>
-            <StyledLink
-              href="/register"
-              onClick={(e) => {
-                customNavigate(e, "/register");
-              }}
-            >
-              Register
-            </StyledLink>
+            {auth === null && (
+              <>
+                <StyledLink
+                  href="/login"
+                  onClick={(e) => {
+                    customNavigate(e, "/login");
+                  }}
+                >
+                  Login
+                </StyledLink>
+                <StyledLink
+                  href="/register"
+                  onClick={(e) => {
+                    customNavigate(e, "/register");
+                  }}
+                >
+                  Register
+                </StyledLink>
+              </>
+            )}
+            {auth && (
+              <StyledLink
+                href="/logout"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLogout();
+                }}
+              >
+                Logout
+              </StyledLink>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
