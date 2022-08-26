@@ -2,10 +2,26 @@ import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import breakpoints from "../../common/extras/breakpoints";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const handleSubmission = (values) => {
-    console.log(values);
+    axios
+      .post(`${process.env.REACT_APP_API_ENDPOINT}/api/login`, values)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("User successfully logged in");
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        err.response.data
+          ? toast.error(err.response.data)
+          : toast.error(err.message);
+      });
   };
 
   return (

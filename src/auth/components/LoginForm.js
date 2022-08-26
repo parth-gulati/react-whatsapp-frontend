@@ -21,7 +21,6 @@ const LoginForm = ({ handleSubmission }) => {
       onSubmit={(values, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         handleSubmission(values);
-        resetForm();
         setSubmitting(false);
       }}
     >
