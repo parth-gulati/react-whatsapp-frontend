@@ -11,6 +11,8 @@ import Register from "./auth/pages/Register";
 import Header from "./common/components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./suits/pages/Dashboard";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -21,6 +23,9 @@ function App() {
       <Router>
         <Header />
         <Container fluid className="App">
+          <ToastContainer
+          theme="colored"
+          />
           <Routes>
             <Route path="*" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />

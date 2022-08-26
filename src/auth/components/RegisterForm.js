@@ -3,10 +3,15 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 const RegisterForm = ({ handleSubmission }) => {
+  /* eslint-disable */
   const validationSchema = Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .min(2, "*Names must have at least 2 characters")
       .max(100, "*Names can't be longer than 100 characters")
+      .matches(
+        /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
+        "Username is not valid"
+      )
       .required("*Name is required"),
     email: Yup.string()
       .email("*Must be a valid email address")
@@ -15,20 +20,29 @@ const RegisterForm = ({ handleSubmission }) => {
     password: Yup.string()
       .min(6, "*Password must be atleast 6 characters")
       .max(32, "*Password cannot be more than 32 characters long")
-      .required("*Password is required"),
+      .required("*Password is required")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+      ),
     confirmPassword: Yup.string()
       .required("*Password confirmation is required")
       .oneOf([Yup.ref("password"), null], "*Passwords must match"),
+    /* eslint-enable */
   });
 
   return (
     <Formik
-      initialValues={{ name: "", email: "", password: "", confirmPassword: "" }}
+      initialValues={{
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         handleSubmission(values);
-        resetForm();
         setSubmitting(false);
       }}
     >
@@ -41,24 +55,21 @@ const RegisterForm = ({ handleSubmission }) => {
         handleSubmit,
         isSubmitting,
       }) => (
-        <Form
-          noValidate
-          onSubmit={handleSubmit}
-        >
+        <Form noValidate onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Username</Form.Label>
             <Form.Control
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.name}
-              name="name"
+              value={values.username}
+              name="username"
               type="text"
               placeholder="Pick your own unique username"
-              isInvalid={touched.name && errors.name}
+              isInvalid={touched.username && errors.username}
             />
-            {touched.name && errors.name ? (
+            {touched.username && errors.username ? (
               <Form.Control.Feedback type="invalid">
-                {errors.name}
+                {errors.username}
               </Form.Control.Feedback>
             ) : null}
           </Form.Group>
