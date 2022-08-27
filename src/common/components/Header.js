@@ -40,14 +40,16 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <StyledLink
-              href="#"
-              onClick={(e) => {
-                customNavigate(e, "/");
-              }}
-            >
-              Dashboard
-            </StyledLink>
+            {auth && (
+              <StyledLink
+                href="#"
+                onClick={(e) => {
+                  customNavigate(e, "/");
+                }}
+              >
+                Dashboard
+              </StyledLink>
+            )}
           </Nav>
           <Nav className="ms-auto">
             {auth === null && (
@@ -84,10 +86,10 @@ const Header = () => {
                     Logout
                   </StyledLink>
                 </Navbar.Collapse>
-                
+
                 <Navbar.Text className="ms-auto">
-                    Signed in as: <a href="#login">{auth.user.username}</a>
-                  </Navbar.Text>
+                  Signed in as: <a href="#login">{auth.user.username}</a>
+                </Navbar.Text>
               </>
             )}
           </Nav>
