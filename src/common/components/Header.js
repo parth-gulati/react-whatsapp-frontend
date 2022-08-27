@@ -71,15 +71,24 @@ const Header = () => {
               </>
             )}
             {auth && (
-              <StyledLink
-                href="/logout"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLogout();
-                }}
-              >
-                Logout
-              </StyledLink>
+              <>
+                <Navbar.Collapse className="justify-content-end">
+                  <StyledLink
+                    className="me-4"
+                    href="/logout"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLogout();
+                    }}
+                  >
+                    Logout
+                  </StyledLink>
+                </Navbar.Collapse>
+                
+                <Navbar.Text className="ms-auto">
+                    Signed in as: <a href="#login">{auth.user.username}</a>
+                  </Navbar.Text>
+              </>
             )}
           </Nav>
         </Navbar.Collapse>
